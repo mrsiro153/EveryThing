@@ -1,15 +1,11 @@
 package submitFileSpring;
 
-import io.vertx.core.json.JsonObject;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.*;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.support.ServletContextResource;
 
-import java.io.File;
 
 public class MainClass {
     private static String server = "http://test.ntex.vn/upload";
