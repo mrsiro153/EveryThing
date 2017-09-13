@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FactoryMethod.iml" filepath="$PROJECT_DIR$/FactoryMethod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FactoryMethod_main.iml" filepath="$PROJECT_DIR$/.idea/modules/FactoryMethod_main.iml" group="FactoryMethod" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FactoryMethod_test.iml" filepath="$PROJECT_DIR$/.idea/modules/FactoryMethod_test.iml" group="FactoryMethod" />
+    </modules>
+  </component>
+</project>
