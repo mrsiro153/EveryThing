@@ -11,23 +11,23 @@ public class MainClass {
 
     public static void main(String[] args) {
         MainClass m = new MainClass();
-        //m.initMQ();
+        m.initMQ();
         String a= "fd";
-        m.testLambda(a,vss->{
+        /*m.testLambda(a,vss->{
             System.out.println(vss);
             return a+"ds";
         });
-        System.out.println("fdfdfd: "+a);
+        System.out.println("fdfdfd: "+a);*/
     }
     //
     public void initMQ(){
         try {
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("server02.ntex.vn");
-            factory.setPort(5672);
-            factory.setUsername("doannh");
-            factory.setPassword("moonrider");
-            factory.setVirtualHost("doanNH");
+            factory.setHost("svtech.ntex.vn");
+            factory.setPort(5673);
+            factory.setUsername("guest");
+            factory.setPassword("1@3Pikachu");
+            factory.setVirtualHost("/");
             factory.setConnectionTimeout(5000);
             factory.setAutomaticRecoveryEnabled(true);
             Connection connection = factory.newConnection();

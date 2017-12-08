@@ -14,9 +14,66 @@ dependencies {
     compile 'io.vertx:vertx-web:3.4.2'
     compile 'io.vertx:vertx-web-client:3.4.2'
     compile 'io.vertx:vertx-rabbitmq-client:3.4.2'
+    // https://mvnrepository.com/artifact/io.vertx/vertx-health-check
+    compile group: 'io.vertx', name: 'vertx-health-check', version: '3.4.2'
+
     compile group: 'io.vertx', name: 'vertx-tcp-eventbus-bridge', version: '3.3.3'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
     compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.2'
+    compile 'org.jooq:jooq:3.9.1'
+    compile 'org.jooq:jooq-codegen:3.9.1'
+    compile 'com.google.code.gson:gson:2.8.1'
+    // https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.5.0'
+
     //
     compile group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE'
 }
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.jooq:jooq:3.9.1'
+        classpath 'org.jooq:jooq-meta:3.9.1'
+        classpath 'org.jooq:jooq-codegen:3.9.1'
+        classpath 'mysql:mysql-connector-java:5.1.38'
+    }
+}
+
+/*task generate(description: 'generate database model')  {
+    def writer = new StringWriter()
+
+    def xml = new groovy.xml.MarkupBuilder(writer)
+            .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.9.0.xsd') {
+
+        jdbc() {
+            driver('com.mysql.jdbc.Driver')
+            url('jdbc:mysql://server03.ntex.vn:9900/')
+            user('root')
+            password('1@3Pikachu')
+        }
+        generator() {
+            name 'org.jooq.util.JavaGenerator'
+            database() {
+                schemata() {
+                    schema() {
+                        inputSchema 'account'
+                    }
+                }
+            }
+            generate() {
+                fluentSetters true
+            }
+            target() {
+                packageName('jooqDemo.model')
+                directory('src/main/java')
+            }
+        }
+    }
+    org.jooq.util.GenerationTool.generate(
+            javax.xml.bind.JAXB.unmarshal(new StringReader(writer.toString()), org.jooq.util.jaxb.Configuration.class)
+    )
+}*/
