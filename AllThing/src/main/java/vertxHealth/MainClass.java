@@ -1,8 +1,11 @@
 package vertxHealth;
 
+import io.vertx.core.Context;
 import io.vertx.core.Vertx;
+import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
+import io.vertx.core.impl.VertxImpl;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.healthchecks.HealthCheckHandler;
 import io.vertx.ext.healthchecks.HealthChecks;
@@ -10,6 +13,8 @@ import io.vertx.ext.healthchecks.Status;
 import io.vertx.ext.web.Router;
 
 import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainClass {
     //
@@ -20,24 +25,29 @@ public class MainClass {
         m.mainFunction();
     }
 
-    public void processAPI() {
-        Runtime r = Runtime.getRuntime();
-        System.out.println("total memory: " + r.totalMemory());
-        System.out.println("free memory: " + r.freeMemory());
-        r.gc();
-        System.out.println("::Memory status::");
-        System.out.println("Total memory: " + r.totalMemory());
-        System.out.println("Free memory: " + r.freeMemory());
-        System.out.println("----------------------------------");
+    public JsonObject processAPI() {
+        try {
+            String percentCPUUsage = currentPercentOfCPU().trim();
+            String percentRAMUsage = currentPercentRam().trim();
+            Integer activeThread = getNumberActiveVertxThread();
+            JsonObject jsonObject = new JsonObject().put("CPUPercent",percentCPUUsage)
+                    .put("RAMPercent",percentRAMUsage)
+                    .put("activeThread",activeThread);
+            return jsonObject;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new JsonObject();
     }
 
     public void mainFunction() {
-        vertx = Vertx.vertx();
+        vertx = Vertx.vertx(new VertxOptions().setWorkerPoolSize(40).setMaxWorkerExecuteTime(500));
         HealthCheckHandler healthCheckHandler = HealthCheckHandler.create(vertx);
-        healthCheckHandler.register("add", future -> {
+        healthCheckHandler.register("healthCheck", future -> {
             //future.complete(Status.KO(new JsonObject().put("memory","2mb")));
-            processAPI();
-            future.fail("donot know");
+            JsonObject jsonObject = processAPI();
+            /*future.fail("donot know");*/
+            future.complete(Status.OK(jsonObject));
         });
         //
         //
@@ -54,23 +64,27 @@ public class MainClass {
         });
     }
 
-    public void currentPercentOfCPU() throws Exception {
-        String[] command =  new String[](
+    public String currentPercentOfCPU() throws Exception {
+        String[] command =  new String[]{
                 "/bin/sh",
                 "-c",
                 "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage \"%\"}'"
                 //"echo $PPID"
-        );
+        };
+        String s = runCMDCommand(command);
+        System.out.println("Your %CPU usage is: "+s);
+        return s;
     }
 
-    public void currentPercentRam() {
-        Process proc = Runtime.getRuntime().exec(new String[]{
+    public String currentPercentRam() throws Exception{
+        String[] command  = new String[]{
                 "/bin/sh",
                 "-c",
-                "free -m | grep Mem | awk '{usage=($7*100/$2)} END {print usage \"%\"}'"
-        });
-        String s = printToConsole(proc);
-        System.out.println("Your %FreeRam is: " + s);
+                "free -m | grep Mem | awk '{usage=100-($7*100/$2)} END {print usage \"%\"}'"
+        };
+        String s = runCMDCommand(command);
+        System.out.println("Your %RamUsage is: " + s);
+        return s;
     }
 
     public String runCMDCommand(String[] commands) throws Exception {
@@ -86,5 +100,12 @@ public class MainClass {
             return result;
         }
         return "";
+    }
+    public Integer getNumberActiveVertxThread(){
+        VertxImpl vertxImpl = (VertxImpl) vertx;
+        ExecutorService executorService  =  vertxImpl.getWorkerPool();
+        Integer x = ((ThreadPoolExecutor) executorService).getActiveCount();
+        System.out.println("Active thread: "+x);
+        return x;
     }
 }
