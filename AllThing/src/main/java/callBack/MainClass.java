@@ -15,7 +15,7 @@ public class MainClass {
     private void test() {
         doCallBack(v -> {
             v += " doan NH";
-            //System.out.println(v);
+            System.out.println(v);
         }, "hello");
 
 
