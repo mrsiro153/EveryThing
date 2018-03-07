@@ -23,11 +23,20 @@ dependencies {
     compile 'org.jooq:jooq:3.9.1'
     compile 'org.jooq:jooq-codegen:3.9.1'
     compile 'com.google.code.gson:gson:2.8.1'
-    // https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
+
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.5.0'
 
+    compile 'org.apache.logging.log4j:log4j-core:2.8.2'
+    compile 'org.apache.logging.log4j:log4j-api:2.8.2'
+    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
     //
     compile group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE'
+
+    //crawler
+    compile('edu.uci.ics:crawler4j:4.1') {
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+    }
+
 }
 buildscript {
     repositories {
@@ -77,3 +86,15 @@ buildscript {
             javax.xml.bind.JAXB.unmarshal(new StringReader(writer.toString()), org.jooq.util.jaxb.Configuration.class)
     )
 }*/
+jar {
+    manifest {
+        attributes "Main-Class": "TestClass"
+    }
+    baseName = 'all-in-one-jar'
+    doFirst {
+        from {
+            configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}

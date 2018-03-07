@@ -1,6 +1,9 @@
 package designPattern.structural.facade;
 
 public class FacadeClass {
+    // facade pattern
+    //if some object wants to interact to wheel or light
+    //it has only one way is interacting facade class
     private Wheel wheel = new Wheel();
     private Light light = new Light();
     private String name;

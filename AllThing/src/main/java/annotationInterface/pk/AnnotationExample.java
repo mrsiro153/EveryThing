@@ -17,12 +17,15 @@ public class AnnotationExample{
         {
             AnnotationExample anExample=new AnnotationExample();
             Method[] methodsArray=anExample.getClass().getMethods();
+            System.out.println("Number of method: "+methodsArray.length);
             for(int i=0;i<methodsArray.length;i++){
                 Method method=methodsArray[i];
                 if(method.isAnnotationPresent(MyFirstAnnotation.class)){
                     MyFirstAnnotation myAnnObject=(method.getAnnotation(MyFirstAnnotation.class));
                     System.out.println("My annotation value:"+myAnnObject.value());
                     method.invoke(anExample, null);
+                }else{
+                    System.out.println("No annotation !!!!!!!!!!!!!!!!!");
                 }
             }
         }
