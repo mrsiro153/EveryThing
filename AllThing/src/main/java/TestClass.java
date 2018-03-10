@@ -11,11 +11,6 @@ public class TestClass {
     final Logger logger = LogManager.getLogger(TestClass.class);
 
     public static void main(String[] args) {
-        System.out.println("fdfd");
-        TestClass t = new TestClass();
-        t.printSomething();
     }
-    public void printSomething(){
-        System.out.println("fdsfsdfsdfsd");
-    }
+
 }
