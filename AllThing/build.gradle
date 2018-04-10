@@ -31,6 +31,7 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
     //
     compile group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE'
+    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.10'
 
     //crawler
     compile('edu.uci.ics:crawler4j:4.1') {
@@ -98,3 +99,16 @@ jar {
     }
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
 }
+/*
+*
+* jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': version,
+                "Main-Class": "pk1.MainClass"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}*/
