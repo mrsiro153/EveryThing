@@ -1,4 +1,4 @@
-package timmerDemo;
+package timerDemo;
 
 import java.util.Date;
 import java.util.Timer;
