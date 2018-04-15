@@ -1,10 +1,9 @@
-package timerDemo;
-
+package timerhaha;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainClass {
+public class TimerDemo {
     public static void main(String[] args) {
         Timer t = new Timer();
         t.schedule(new TimerTask() {
