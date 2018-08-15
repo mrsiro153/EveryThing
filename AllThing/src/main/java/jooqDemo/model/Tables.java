@@ -4,24 +4,9 @@
 package jooqDemo.model;
 
 
-import javax.annotation.Generated;
+import jooqDemo.model.tables.*;
 
-import jooqDemo.model.tables.Bankbranch;
-import jooqDemo.model.tables.Bankcode;
-import jooqDemo.model.tables.Card;
-import jooqDemo.model.tables.Cardverify;
-import jooqDemo.model.tables.Citycode;
-import jooqDemo.model.tables.Ddaccount;
-import jooqDemo.model.tables.Ddrate;
-import jooqDemo.model.tables.Ddremark;
-import jooqDemo.model.tables.Ddtype;
-import jooqDemo.model.tables.Fdaccount;
-import jooqDemo.model.tables.Fdaccountotp;
-import jooqDemo.model.tables.Pattern;
-import jooqDemo.model.tables.Payee;
-import jooqDemo.model.tables.Payment;
-import jooqDemo.model.tables.Paymentreport;
-import jooqDemo.model.tables.Paymentrequest;
+import javax.annotation.Generated;
 
 
 /**

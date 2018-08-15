@@ -3,6 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'com.google.protobuf'
 
 repositories {
     mavenCentral()
@@ -42,6 +43,12 @@ dependencies {
     //
     compile group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE'
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.10'
+    //
+    compile "com.google.api.grpc:proto-google-common-protos:1.0.0"
+    compile "io.grpc:grpc-alts:${grpcVersion}"
+    compile "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    compile "io.grpc:grpc-protobuf:${grpcVersion}"
+    compile "io.grpc:grpc-stub:${grpcVersion}"
 
     //crawler
     compile('edu.uci.ics:crawler4j:4.1') {
@@ -50,6 +57,7 @@ dependencies {
 
 }
 buildscript {
+    ext.grpcVersion = '1.14.0'
     repositories {
         mavenCentral()
         jcenter()
@@ -60,9 +68,11 @@ buildscript {
         classpath 'org.jooq:jooq-meta:3.9.1'
         classpath 'org.jooq:jooq-codegen:3.9.1'
         classpath 'mysql:mysql-connector-java:5.1.38'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
     }
 }
 
+//jooq generate
 /*task generate(description: 'generate database model')  {
     def writer = new StringWriter()
 
@@ -108,4 +118,22 @@ buildscript {
         }
     }
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}*/
+
+//grpc generate
+/*protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.5.1-1"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.14.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/main/java/grpcExam/generate"
 }*/

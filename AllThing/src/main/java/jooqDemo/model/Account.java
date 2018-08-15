@@ -4,32 +4,15 @@
 package jooqDemo.model;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.Generated;
-
-import jooqDemo.model.tables.Bankbranch;
-import jooqDemo.model.tables.Bankcode;
-import jooqDemo.model.tables.Card;
-import jooqDemo.model.tables.Cardverify;
-import jooqDemo.model.tables.Citycode;
-import jooqDemo.model.tables.Ddaccount;
-import jooqDemo.model.tables.Ddrate;
-import jooqDemo.model.tables.Ddremark;
-import jooqDemo.model.tables.Ddtype;
-import jooqDemo.model.tables.Fdaccount;
-import jooqDemo.model.tables.Fdaccountotp;
-import jooqDemo.model.tables.Pattern;
-import jooqDemo.model.tables.Payee;
-import jooqDemo.model.tables.Payment;
-import jooqDemo.model.tables.Paymentreport;
-import jooqDemo.model.tables.Paymentrequest;
-
+import jooqDemo.model.tables.*;
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
+
+import javax.annotation.Generated;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**

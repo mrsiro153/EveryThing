@@ -4,18 +4,16 @@
 package jooqDemo.model.tables.records;
 
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
-import javax.annotation.Generated;
-
 import jooqDemo.model.tables.Card;
-
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record12;
 import org.jooq.Row12;
 import org.jooq.impl.UpdatableRecordImpl;
+
+import javax.annotation.Generated;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 
 /**

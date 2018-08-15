@@ -1,7 +1,5 @@
 package methodReference;
 
-import sun.applet.Main;
-
 public class MainClass {
     public static final String data = "ahhahaaa";
     public static void main(String[] args) {

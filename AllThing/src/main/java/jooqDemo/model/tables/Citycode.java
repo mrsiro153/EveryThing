@@ -4,16 +4,15 @@
 package jooqDemo.model.tables;
 
 
-import javax.annotation.Generated;
-
 import jooqDemo.model.Account;
 import jooqDemo.model.tables.records.CitycodeRecord;
-
 import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.impl.TableImpl;
+
+import javax.annotation.Generated;
 
 
 /**

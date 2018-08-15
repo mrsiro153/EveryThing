@@ -3,8 +3,6 @@ package rabbitmq;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainClass {
     private Channel channel;

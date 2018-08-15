@@ -4,40 +4,13 @@
 package jooqDemo.model;
 
 
-import javax.annotation.Generated;
-
-import jooqDemo.model.tables.Bankbranch;
-import jooqDemo.model.tables.Bankcode;
-import jooqDemo.model.tables.Card;
-import jooqDemo.model.tables.Cardverify;
-import jooqDemo.model.tables.Ddaccount;
-import jooqDemo.model.tables.Ddremark;
-import jooqDemo.model.tables.Ddtype;
-import jooqDemo.model.tables.Fdaccount;
-import jooqDemo.model.tables.Fdaccountotp;
-import jooqDemo.model.tables.Pattern;
-import jooqDemo.model.tables.Payee;
-import jooqDemo.model.tables.Payment;
-import jooqDemo.model.tables.Paymentreport;
-import jooqDemo.model.tables.Paymentrequest;
-import jooqDemo.model.tables.records.BankbranchRecord;
-import jooqDemo.model.tables.records.BankcodeRecord;
-import jooqDemo.model.tables.records.CardRecord;
-import jooqDemo.model.tables.records.CardverifyRecord;
-import jooqDemo.model.tables.records.DdaccountRecord;
-import jooqDemo.model.tables.records.DdremarkRecord;
-import jooqDemo.model.tables.records.DdtypeRecord;
-import jooqDemo.model.tables.records.FdaccountRecord;
-import jooqDemo.model.tables.records.FdaccountotpRecord;
-import jooqDemo.model.tables.records.PatternRecord;
-import jooqDemo.model.tables.records.PayeeRecord;
-import jooqDemo.model.tables.records.PaymentRecord;
-import jooqDemo.model.tables.records.PaymentreportRecord;
-import jooqDemo.model.tables.records.PaymentrequestRecord;
-
+import jooqDemo.model.tables.*;
+import jooqDemo.model.tables.records.*;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
+
+import javax.annotation.Generated;
 
 
 /**

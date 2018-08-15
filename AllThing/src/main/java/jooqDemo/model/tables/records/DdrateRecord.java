@@ -4,17 +4,15 @@
 package jooqDemo.model.tables.records;
 
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-
-import javax.annotation.Generated;
-
 import jooqDemo.model.tables.Ddrate;
-
 import org.jooq.Field;
 import org.jooq.Record10;
 import org.jooq.Row10;
 import org.jooq.impl.TableRecordImpl;
+
+import javax.annotation.Generated;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 
 /**

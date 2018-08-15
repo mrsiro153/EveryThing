@@ -4,21 +4,15 @@
 package jooqDemo.model.tables;
 
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.Generated;
-
 import jooqDemo.model.Account;
 import jooqDemo.model.Keys;
 import jooqDemo.model.tables.records.PaymentRecord;
-
-import org.jooq.Field;
-import org.jooq.Schema;
-import org.jooq.Table;
-import org.jooq.TableField;
-import org.jooq.UniqueKey;
+import org.jooq.*;
 import org.jooq.impl.TableImpl;
+
+import javax.annotation.Generated;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**

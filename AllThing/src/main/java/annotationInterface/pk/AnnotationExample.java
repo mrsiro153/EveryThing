@@ -1,7 +1,5 @@
 package annotationInterface.pk;
 
-import annotationInterface.IExample;
-
 import java.lang.reflect.Method;
 
 public class AnnotationExample{

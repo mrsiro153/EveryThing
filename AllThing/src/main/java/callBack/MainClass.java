@@ -1,7 +1,5 @@
 package callBack;
 
-import io.vertx.core.Vertx;
-
 public class MainClass {
     public static void main(String[] args) {
         new MainClass().test();
