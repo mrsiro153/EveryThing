@@ -20,9 +20,8 @@ public class MyCrawler extends WebCrawler {
         logger.warn("URL visit: {}",url);
         String href = url.getURL().toLowerCase();
         logger.warn("should visit? {}",!FILTERS.matcher(href).matches()
-                && href.startsWith("http://nestviet.com/"));
-        return !FILTERS.matcher(href).matches()
-                && href.startsWith("http://nestviet.com/");
+                && href.startsWith("https://diemthi.vnexpress.net/"));
+        return !FILTERS.matcher(href).matches() && href.startsWith("https://diemthi.vnexpress.net/");
     }
 
     @Override

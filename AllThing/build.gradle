@@ -50,6 +50,7 @@ dependencies {
     compile "io.grpc:grpc-protobuf:${grpcVersion}"
     compile "io.grpc:grpc-stub:${grpcVersion}"
 
+
     //crawler
     compile('edu.uci.ics:crawler4j:4.1') {
         exclude group: 'ch.qos.logback', module: 'logback-classic'

@@ -28,7 +28,7 @@ public class MainClass {
          * URLs that are fetched and then the crawler starts following links
          * which are found in these pages
          */
-        controller.addSeed("http://nestviet.com/");
+        controller.addSeed("https://diemthi.vnexpress.net/");
 
         /*
          * Start the crawl. This is a blocking operation, meaning that your code
