@@ -1,67 +1,49 @@
 package jooqDemo.test;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import io.vertx.core.Vertx;
 import jooqDemo.model.Tables;
-import jooqDemo.model.tables.records.DdaccountRecord;
-import org.jooq.DSLContext;
-import org.jooq.SQLDialect;
+import jooqDemo.model.tables.Table1;
+import jooqDemo.model.tables.records.Table1Record;
+import log4j2.LogAdapter;
+import org.jooq.*;
 import org.jooq.impl.DSL;
 
+import java.io.EOFException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class MainClass {
     //
     public static void main(String[] args) {
-        String userName = "root";
-        String url = "jdbc:mysql://server03.ntex.vn:9900/account";
-        String password = "1@3Pikachu";
+        Gson gson = new Gson();
+        LogAdapter l = LogAdapter.newInstance(MainClass.class);
         //
-        try (Connection connection = DriverManager.getConnection(url, userName, password)) {
-            DSLContext context = DSL.using(connection, SQLDialect.MYSQL);
-            DdaccountRecord accountRecord = context.selectFrom(Tables.DDACCOUNT)
-                    .fetchInto(DdaccountRecord.class).get(85);
-            System.out.println(accountRecord);
-            System.out.println();
-            System.out.println();
-            Gson gson = new Gson();
-            String s = gson.toJson(accountRecord.intoMap());
-            System.out.println(s);
-            //
-            //
-            System.out.println();
+        String userName = "root";
+        String url = "jdbc:mysql://192.168.18.49:8060/mydata";
+        String password = "intelin";
+        //
+        Vertx vertx = Vertx.vertx();
 
-            Map<String, Object> map = new HashMap<String, Object>();
-            map = gson.fromJson(s,new TypeToken<HashMap<String,Object>>(){
-            }.getType());
+        vertx.setPeriodic(5000, id -> {
+            System.out.println("Now: "  + new Timestamp(System.currentTimeMillis()));
 
-
-            for(String key: map.keySet()){
-                System.out.println("key: "+key);
-                System.out.println("value: "+map.get(key).toString());
-                System.out.println(map.get(key).getClass());
+            try (Connection connection = DriverManager.getConnection(url, userName, password)) {
+                DSLContext context = DSL.using(connection, SQLDialect.MYSQL);
+                Timestamp a = new Timestamp(System.currentTimeMillis());
+                System.out.println(a.toString());
+                TableRecord<?> r = context.insertInto(Tables.TABLE1)
+                        .set(Tables.TABLE1.CREATEAT, a)
+                        .returning(Tables.TABLE1.CREATEAT)
+                        .fetchOne();
+                System.out.println(((Table1Record) r).getCreateat());
+            } catch (SQLException e) {
+                System.out.println("SQL Exception: " + e.getMessage());
+                e.printStackTrace();
             }
-            System.out.println();
-
-            DdaccountRecord ddaccountRecord = new DdaccountRecord();
-            ddaccountRecord.fromMap(map);
-            System.out.println(ddaccountRecord);
-
-            //
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
-    public void dsds(){
-        /*UpdateSetMoreStep query = context.update(ddaccountRecord.getTable())
-                .set(ddaccountRecord);
-        for(TableField<DdaccountRecord, ?> keyField : ddaccountRecord.getTable().getPrimaryKey().getFields()){
-            query.where(ddaccountRecord.getTable().getPrimaryKey().getFields().equals(ddaccountRecord.getId()));
-        }
-        Integer x = query.execute();
-        System.out.println(x);*/
-    }
+
 }
