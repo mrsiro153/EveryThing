@@ -1,21 +1,39 @@
 package log4j2;
 
+import io.vertx.core.Future;
+import io.vertx.core.Handler;
+import io.vertx.core.Vertx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.AppendersPlugin;
+
+import java.util.Date;
 
 public class MainClass {
-    final static Logger logger = LogManager.getLogger(MainClass.class);
+    private final LogAdapter logger = LogAdapter.newInstance(this.getClass());
 
 
     public static void main(String[] args) {
-        testLog();
+        MainClass m = new MainClass();
+        m.testLog();
     }
-    public static void testLog(){
-        logger.fatal("this is fatal message");
-        logger.error("this is error message");
-        logger.warn("this is warn message");
-        logger.info("this is info message");
-        logger.debug("this is debug message");
-        logger.trace("this is trace message");
+
+    private void testLog() {
+        String idRequest = Generator.generateIdLog(LogType.END_USER);
+        logger.setIdRequest(idRequest);
+        logger.warn(new Date() + "  ----- this is warn message: {}", "WARN ------");
+        Thread t = new Thread(() -> {
+            logger.setIdRequest(idRequest);
+            logger.error("hello world");
+        });
+        t.start();
+        //
+        Vertx vertx = Vertx.vertx();
+        vertx.executeBlocking(handle->{
+            logger.setIdRequest(idRequest);
+            logger.trace("HAHAHAH");
+        },res->{
+            logger.trace("NOTHING to say");
+        });
     }
 }

@@ -1,16 +1,18 @@
 {
   "configuration": {
+    "packages":"log4j2.custom",
     "appenders": {
       "Console": {
         "name": "STDOUT",
+        "target":"SYSTEM_OUT",
         "PatternLayout": {
-          "pattern": "%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{10}  - %msg%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green bold, DEBUG=black, TRACE=blue}"
+          "pattern": "%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%T] %c{10} - %msg%n}{FATAL=red blink, ERROR=Bright red, WARN=yellow bold, INFO=green bold, DEBUG=black, TRACE=blue}"
         }
       },
       "RollingFile": {
         "name": "File",
-        "fileName": "/home/doan/Documents/intelin/EveryThing/allthing.log",
-        "filePattern": "/home/doan/Documents/intelin/EveryThing/allthing-backup-%d{MM-dd-yy-HH-mm-ss}-%i.log.gz",
+        "fileName": "/home/doan/Documents/intelin/EveryThing/logs/allthing.log",
+        "filePattern": "/home/doan/Documents/intelin/EveryThing/logs/allthing-backup-%d{MM-dd-yy-HH-mm-ss}-%i.log.gz",
         "PatternLayout": {
           "pattern": "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"
         },
@@ -23,10 +25,17 @@
           "max": "10"
         }
       },
-      "Socket":{
-        "name":"socket",
-        "host":"192.168.18.49",
-        "port":9600
+      "Socket": {
+        "name": "socket",
+        "host": "192.168.18.49",
+        "port": 5043,
+        "immediateFlush": false,
+        "connectTimeoutMillis": 5000,
+        "jsonLayout": {
+          "properties":true,
+          "compact": true,
+          "eventEol": true
+        }
       }
     },
     "loggers": {
@@ -40,8 +49,12 @@
             "ref": "File"
           },
           {
-            "ref":"socket"
+            "ref": "socket"
           }
+          /*,
+                    {
+                      "ref":"gelf"
+                    }*/
         ]
       }
     }

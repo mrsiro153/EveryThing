@@ -15,7 +15,7 @@ public class RouteGuideServer {
 
     private void start() throws IOException {
         /* The port on which the server should run */
-        int port = 50051;
+        int port = 9500;
         server = ServerBuilder.forPort(port)
                 .addService(new GreeterImpl())
                 .build()

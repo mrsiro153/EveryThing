@@ -4,13 +4,14 @@
 package jooqDemo.model;
 
 
-import org.jooq.Schema;
-import org.jooq.impl.CatalogImpl;
-
-import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.annotation.Generated;
+
+import org.jooq.Schema;
+import org.jooq.impl.CatalogImpl;
 
 
 /**
@@ -26,7 +27,7 @@ import java.util.List;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultCatalog extends CatalogImpl {
 
-    private static final long serialVersionUID = 45000970;
+    private static final long serialVersionUID = -1082184551;
 
     /**
      * The reference instance of <code></code>
@@ -34,9 +35,9 @@ public class DefaultCatalog extends CatalogImpl {
     public static final DefaultCatalog DEFAULT_CATALOG = new DefaultCatalog();
 
     /**
-     * The schema <code>account</code>.
+     * The schema <code>mydata</code>.
      */
-    public final Account ACCOUNT = jooqDemo.model.Account.ACCOUNT;
+    public final Mydata MYDATA = jooqDemo.model.Mydata.MYDATA;
 
     /**
      * No further instances allowed
@@ -54,6 +55,6 @@ public class DefaultCatalog extends CatalogImpl {
 
     private final List<Schema> getSchemas0() {
         return Arrays.<Schema>asList(
-            Account.ACCOUNT);
+            Mydata.MYDATA);
     }
 }

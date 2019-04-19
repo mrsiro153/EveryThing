@@ -16,20 +16,24 @@ public class MainClass {
     private static final String pattern2 = "[a-zA-Z0-9!#$%&'*-+/=?^_`{|}~.]?=([0-9]+|[!#$%&'*-+/=?^_`{|}~.]+){6,35}$";
 
     private static final String pattern3 = "^([a-z0-9]([!@#$]|[A-Z])*){6,35}$";
-    private static final String pattern4 =".{32,256}";
+    private static final String pattern4 = ".{32,256}";
 
     public static void main(String[] args) {
         try {
-            // String to be scanned to find the pattern.
-            //String testString = "!#$%^@gmail.com";
-            String testString ="!&fd0s-ld";
+            test2("//sdfgfdsgs/");
 
-            boolean b = testString.matches(pattern4);
-            System.out.println("Result: "+b);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static Pattern test = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",Pattern.CASE_INSENSITIVE);
+    private static Pattern test = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    private static void test2(String test) {
+        if (!test.trim().matches("^([a-zA-Z0-9_/-]*){6,20}$")) {
+            System.out.println("Customer id is not valid: length " + test.length() + "   " + test);
+        } else {
+            System.out.println("valid!!!!!!!! " + test);
+        }
+    }
 }

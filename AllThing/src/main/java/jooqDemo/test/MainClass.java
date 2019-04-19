@@ -10,40 +10,46 @@ import org.jooq.*;
 import org.jooq.impl.DSL;
 
 import java.io.EOFException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 
 public class MainClass {
+    private static final LogAdapter log = LogAdapter.newInstance(MainClass.class);
     //
     public static void main(String[] args) {
         Gson gson = new Gson();
         LogAdapter l = LogAdapter.newInstance(MainClass.class);
         //
         String userName = "root";
-        String url = "jdbc:mysql://192.168.18.49:8060/mydata";
+        String url = "jdbc:mysql://192.168.18.49:6600/mydata";
         String password = "intelin";
         //
         Vertx vertx = Vertx.vertx();
 
-        vertx.setPeriodic(5000, id -> {
-            System.out.println("Now: "  + new Timestamp(System.currentTimeMillis()));
+        //vertx.setPeriodic(3000, id -> {
+            Timestamp a = new Timestamp(System.currentTimeMillis());
+            System.out.println("INSERTTTTTTTTTT: "  + a);
 
             try (Connection connection = DriverManager.getConnection(url, userName, password)) {
+                connection.setAutoCommit(false);
+                System.out.println("AUTO COMMIT: "+connection.getAutoCommit());
                 DSLContext context = DSL.using(connection, SQLDialect.MYSQL);
-                Timestamp a = new Timestamp(System.currentTimeMillis());
-                System.out.println(a.toString());
-                TableRecord<?> r = context.insertInto(Tables.TABLE1)
-                        .set(Tables.TABLE1.CREATEAT, a)
-                        .returning(Tables.TABLE1.CREATEAT)
+                Table1Record r = context.insertInto(Tables.TABLE1)
+                        .set(Tables.TABLE1.NAME,"abc")
+                        .set(Tables.TABLE1.CREATEDAT,a)
+                        .returning()
                         .fetchOne();
-                System.out.println(((Table1Record) r).getCreateat());
+                /*System.out.println("AAAAAAAAAAAAAAA "+context.insertInto(Tables.TABLE1)
+                        .set(Tables.TABLE1.NAME,"abc")
+                        .set(Tables.TABLE1.CREATEDAT,a)
+                        .returning()
+                        .toString());*/
+                System.out.println("save data: "+ r.getCreatedat() +"  "+r.getId()+"   "+r.getName());
+                System.out.println("-----------------------------------------------------------------");
             } catch (SQLException e) {
-                System.out.println("SQL Exception: " + e.getMessage());
-                e.printStackTrace();
+                log.warn(e);
+                //e.printStackTrace();
             }
-        });
+        //});
     }
 
 }

@@ -21,14 +21,16 @@ jar {
 }
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'io.vertx:vertx-core:3.4.2'
-    compile 'io.vertx:vertx-web:3.4.2'
-    compile 'io.vertx:vertx-web-client:3.4.2'
-    compile 'io.vertx:vertx-rabbitmq-client:3.4.2'
+    compile 'io.vertx:vertx-core:3.7.0'
+    compile 'io.vertx:vertx-web:3.7.0'
+    compile 'io.vertx:vertx-web-client:3.7.0'
+    compile 'io.vertx:vertx-rabbitmq-client:3.7.0'
     // https://mvnrepository.com/artifact/io.vertx/vertx-health-check
-    compile group: 'io.vertx', name: 'vertx-health-check', version: '3.4.2'
+    compile group: 'io.vertx', name: 'vertx-health-check', version: '3.7.0'
+    compile 'io.vertx:vertx-web-api-contract:3.6.2'
+    compile 'io.vertx:vertx-mqtt:3.7.0'
 
-    compile group: 'io.vertx', name: 'vertx-tcp-eventbus-bridge', version: '3.3.3'
+    compile group: 'io.vertx', name: 'vertx-tcp-eventbus-bridge', version: '3.7.0'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
     compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.2'
     compile 'org.jooq:jooq:3.9.1'
@@ -50,11 +52,19 @@ dependencies {
     compile "io.grpc:grpc-protobuf:${grpcVersion}"
     compile "io.grpc:grpc-stub:${grpcVersion}"
 
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+
+
 
     //crawler
     compile('edu.uci.ics:crawler4j:4.1') {
         exclude group: 'ch.qos.logback', module: 'logback-classic'
     }
+
+    //log4j2 to ela
+    compile group: 'org.graylog2.log4j2', name: 'log4j2-gelf', version: '1.3.1'
+
 
 }
 buildscript {
@@ -74,40 +84,41 @@ buildscript {
 }
 
 //jooq generate
-/*task generate(description: 'generate database model')  {
-    def writer = new StringWriter()
-
-    def xml = new groovy.xml.MarkupBuilder(writer)
-            .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.9.0.xsd') {
-
-        jdbc() {
-            driver('com.mysql.jdbc.Driver')
-            url('jdbc:mysql://server03.ntex.vn:9900/')
-            user('root')
-            password('1@3Pikachu')
-        }
-        generator() {
-            name 'org.jooq.util.JavaGenerator'
-            database() {
-                schemata() {
-                    schema() {
-                        inputSchema 'account'
-                    }
-                }
-            }
-            generate() {
-                fluentSetters true
-            }
-            target() {
-                packageName('jooqDemo.model')
-                directory('src/main/java')
-            }
-        }
-    }
-    org.jooq.util.GenerationTool.generate(
-            javax.xml.bind.JAXB.unmarshal(new StringReader(writer.toString()), org.jooq.util.jaxb.Configuration.class)
-    )
-}*/
+//task generate(description: 'generate database model')  {
+//    def writer = new StringWriter()
+//
+//    def xml = new groovy.xml.MarkupBuilder(writer)
+//            .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.9.0.xsd') {
+//
+//        jdbc() {
+//            driver('com.mysql.jdbc.Driver')
+//            url('jdbc:mysql://192.168.18.49:6600/')
+//            user('root')
+//            password('intelin')
+//            //password('AbCd@1234')
+//        }
+//        generator() {
+//            name 'org.jooq.util.JavaGenerator'
+//            database() {
+//                schemata() {
+//                    schema() {
+//                        inputSchema 'mydata'
+//                    }
+//                }
+//            }
+//            generate() {
+//                fluentSetters true
+//            }
+//            target() {
+//                packageName('jooqDemo.model')
+//                directory('src/main/java')
+//            }
+//        }
+//    }
+//    org.jooq.util.GenerationTool.generate(
+//            javax.xml.bind.JAXB.unmarshal(new StringReader(writer.toString()), org.jooq.util.jaxb.Configuration.class)
+//    )
+//}
 /*jar {
     manifest {
         attributes "Main-Class": "TestClass"
@@ -122,7 +133,7 @@ buildscript {
 }*/
 
 //grpc generate
-/*protobuf {
+protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:3.5.1-1"
     }
@@ -137,4 +148,4 @@ buildscript {
         }
     }
     generatedFilesBaseDir = "$projectDir/src/main/java/grpcExam/generate"
-}*/
+}

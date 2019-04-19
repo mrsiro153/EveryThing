@@ -4,13 +4,13 @@
 package jooqDemo.model;
 
 
-import jooqDemo.model.tables.*;
-
 import javax.annotation.Generated;
+
+import jooqDemo.model.tables.Table1;
 
 
 /**
- * Convenience access to all tables in account
+ * Convenience access to all tables in mydata
  */
 @Generated(
     value = {
@@ -23,82 +23,7 @@ import javax.annotation.Generated;
 public class Tables {
 
     /**
-     * The table <code>account.bankBranch</code>.
+     * The table <code>mydata.table1</code>.
      */
-    public static final Bankbranch BANKBRANCH = jooqDemo.model.tables.Bankbranch.BANKBRANCH;
-
-    /**
-     * The table <code>account.bankCode</code>.
-     */
-    public static final Bankcode BANKCODE = jooqDemo.model.tables.Bankcode.BANKCODE;
-
-    /**
-     * The table <code>account.card</code>.
-     */
-    public static final Card CARD = jooqDemo.model.tables.Card.CARD;
-
-    /**
-     * The table <code>account.cardVerify</code>.
-     */
-    public static final Cardverify CARDVERIFY = jooqDemo.model.tables.Cardverify.CARDVERIFY;
-
-    /**
-     * The table <code>account.cityCode</code>.
-     */
-    public static final Citycode CITYCODE = jooqDemo.model.tables.Citycode.CITYCODE;
-
-    /**
-     * The table <code>account.ddAccount</code>.
-     */
-    public static final Ddaccount DDACCOUNT = jooqDemo.model.tables.Ddaccount.DDACCOUNT;
-
-    /**
-     * The table <code>account.ddRate</code>.
-     */
-    public static final Ddrate DDRATE = jooqDemo.model.tables.Ddrate.DDRATE;
-
-    /**
-     * The table <code>account.ddRemark</code>.
-     */
-    public static final Ddremark DDREMARK = jooqDemo.model.tables.Ddremark.DDREMARK;
-
-    /**
-     * The table <code>account.ddType</code>.
-     */
-    public static final Ddtype DDTYPE = jooqDemo.model.tables.Ddtype.DDTYPE;
-
-    /**
-     * The table <code>account.fdAccount</code>.
-     */
-    public static final Fdaccount FDACCOUNT = jooqDemo.model.tables.Fdaccount.FDACCOUNT;
-
-    /**
-     * The table <code>account.fdAccountOTP</code>.
-     */
-    public static final Fdaccountotp FDACCOUNTOTP = jooqDemo.model.tables.Fdaccountotp.FDACCOUNTOTP;
-
-    /**
-     * The table <code>account.pattern</code>.
-     */
-    public static final Pattern PATTERN = jooqDemo.model.tables.Pattern.PATTERN;
-
-    /**
-     * The table <code>account.payee</code>.
-     */
-    public static final Payee PAYEE = jooqDemo.model.tables.Payee.PAYEE;
-
-    /**
-     * The table <code>account.payment</code>.
-     */
-    public static final Payment PAYMENT = jooqDemo.model.tables.Payment.PAYMENT;
-
-    /**
-     * The table <code>account.paymentReport</code>.
-     */
-    public static final Paymentreport PAYMENTREPORT = jooqDemo.model.tables.Paymentreport.PAYMENTREPORT;
-
-    /**
-     * The table <code>account.paymentRequest</code>.
-     */
-    public static final Paymentrequest PAYMENTREQUEST = jooqDemo.model.tables.Paymentrequest.PAYMENTREQUEST;
+    public static final Table1 TABLE1 = jooqDemo.model.tables.Table1.TABLE1;
 }

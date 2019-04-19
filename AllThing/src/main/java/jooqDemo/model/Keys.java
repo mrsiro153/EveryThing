@@ -4,17 +4,18 @@
 package jooqDemo.model;
 
 
-import jooqDemo.model.tables.*;
-import jooqDemo.model.tables.records.*;
+import javax.annotation.Generated;
+
+import jooqDemo.model.tables.Table1;
+import jooqDemo.model.tables.records.Table1Record;
+
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
-import javax.annotation.Generated;
-
 
 /**
- * A class modelling foreign key relationships between tables of the <code>account</code> 
+ * A class modelling foreign key relationships between tables of the <code>mydata</code> 
  * schema
  */
 @Generated(
@@ -31,30 +32,13 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
-    public static final Identity<DdaccountRecord, Integer> IDENTITY_DDACCOUNT = Identities0.IDENTITY_DDACCOUNT;
-    public static final Identity<FdaccountRecord, Integer> IDENTITY_FDACCOUNT = Identities0.IDENTITY_FDACCOUNT;
-    public static final Identity<PaymentreportRecord, Integer> IDENTITY_PAYMENTREPORT = Identities0.IDENTITY_PAYMENTREPORT;
+    public static final Identity<Table1Record, Integer> IDENTITY_TABLE1 = Identities0.IDENTITY_TABLE1;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<BankbranchRecord> KEY_BANKBRANCH_PRIMARY = UniqueKeys0.KEY_BANKBRANCH_PRIMARY;
-    public static final UniqueKey<BankcodeRecord> KEY_BANKCODE_PRIMARY = UniqueKeys0.KEY_BANKCODE_PRIMARY;
-    public static final UniqueKey<CardRecord> KEY_CARD_PRIMARY = UniqueKeys0.KEY_CARD_PRIMARY;
-    public static final UniqueKey<CardverifyRecord> KEY_CARDVERIFY_PRIMARY = UniqueKeys0.KEY_CARDVERIFY_PRIMARY;
-    public static final UniqueKey<DdaccountRecord> KEY_DDACCOUNT_PRIMARY = UniqueKeys0.KEY_DDACCOUNT_PRIMARY;
-    public static final UniqueKey<DdaccountRecord> KEY_DDACCOUNT_DDACCOUNT_ID_UINDEX = UniqueKeys0.KEY_DDACCOUNT_DDACCOUNT_ID_UINDEX;
-    public static final UniqueKey<DdremarkRecord> KEY_DDREMARK_PRIMARY = UniqueKeys0.KEY_DDREMARK_PRIMARY;
-    public static final UniqueKey<DdtypeRecord> KEY_DDTYPE_PRIMARY = UniqueKeys0.KEY_DDTYPE_PRIMARY;
-    public static final UniqueKey<FdaccountRecord> KEY_FDACCOUNT_ID = UniqueKeys0.KEY_FDACCOUNT_ID;
-    public static final UniqueKey<FdaccountRecord> KEY_FDACCOUNT_PRIMARY = UniqueKeys0.KEY_FDACCOUNT_PRIMARY;
-    public static final UniqueKey<FdaccountotpRecord> KEY_FDACCOUNTOTP_PRIMARY = UniqueKeys0.KEY_FDACCOUNTOTP_PRIMARY;
-    public static final UniqueKey<PatternRecord> KEY_PATTERN_PRIMARY = UniqueKeys0.KEY_PATTERN_PRIMARY;
-    public static final UniqueKey<PayeeRecord> KEY_PAYEE_PRIMARY = UniqueKeys0.KEY_PAYEE_PRIMARY;
-    public static final UniqueKey<PaymentRecord> KEY_PAYMENT_PRIMARY = UniqueKeys0.KEY_PAYMENT_PRIMARY;
-    public static final UniqueKey<PaymentreportRecord> KEY_PAYMENTREPORT_PRIMARY = UniqueKeys0.KEY_PAYMENTREPORT_PRIMARY;
-    public static final UniqueKey<PaymentrequestRecord> KEY_PAYMENTREQUEST_PRIMARY = UniqueKeys0.KEY_PAYMENTREQUEST_PRIMARY;
+    public static final UniqueKey<Table1Record> KEY_TABLE1_PRIMARY = UniqueKeys0.KEY_TABLE1_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -66,27 +50,10 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 extends AbstractKeys {
-        public static Identity<DdaccountRecord, Integer> IDENTITY_DDACCOUNT = createIdentity(Ddaccount.DDACCOUNT, Ddaccount.DDACCOUNT.ID);
-        public static Identity<FdaccountRecord, Integer> IDENTITY_FDACCOUNT = createIdentity(Fdaccount.FDACCOUNT, Fdaccount.FDACCOUNT.ID);
-        public static Identity<PaymentreportRecord, Integer> IDENTITY_PAYMENTREPORT = createIdentity(Paymentreport.PAYMENTREPORT, Paymentreport.PAYMENTREPORT.PAYMENTREPORTID);
+        public static Identity<Table1Record, Integer> IDENTITY_TABLE1 = createIdentity(Table1.TABLE1, Table1.TABLE1.ID);
     }
 
     private static class UniqueKeys0 extends AbstractKeys {
-        public static final UniqueKey<BankbranchRecord> KEY_BANKBRANCH_PRIMARY = createUniqueKey(Bankbranch.BANKBRANCH, "KEY_bankBranch_PRIMARY", Bankbranch.BANKBRANCH.BRANCHID);
-        public static final UniqueKey<BankcodeRecord> KEY_BANKCODE_PRIMARY = createUniqueKey(Bankcode.BANKCODE, "KEY_bankCode_PRIMARY", Bankcode.BANKCODE.BANKCODE_);
-        public static final UniqueKey<CardRecord> KEY_CARD_PRIMARY = createUniqueKey(Card.CARD, "KEY_card_PRIMARY", Card.CARD.CARDNUMBER);
-        public static final UniqueKey<CardverifyRecord> KEY_CARDVERIFY_PRIMARY = createUniqueKey(Cardverify.CARDVERIFY, "KEY_cardVerify_PRIMARY", Cardverify.CARDVERIFY.REFKEY);
-        public static final UniqueKey<DdaccountRecord> KEY_DDACCOUNT_PRIMARY = createUniqueKey(Ddaccount.DDACCOUNT, "KEY_ddAccount_PRIMARY", Ddaccount.DDACCOUNT.ID);
-        public static final UniqueKey<DdaccountRecord> KEY_DDACCOUNT_DDACCOUNT_ID_UINDEX = createUniqueKey(Ddaccount.DDACCOUNT, "KEY_ddAccount_ddAccount_id_uindex", Ddaccount.DDACCOUNT.ID);
-        public static final UniqueKey<DdremarkRecord> KEY_DDREMARK_PRIMARY = createUniqueKey(Ddremark.DDREMARK, "KEY_ddRemark_PRIMARY", Ddremark.DDREMARK.ACCOUNTNUMBER);
-        public static final UniqueKey<DdtypeRecord> KEY_DDTYPE_PRIMARY = createUniqueKey(Ddtype.DDTYPE, "KEY_ddType_PRIMARY", Ddtype.DDTYPE.ACCOUNTTYPE);
-        public static final UniqueKey<FdaccountRecord> KEY_FDACCOUNT_ID = createUniqueKey(Fdaccount.FDACCOUNT, "KEY_fdAccount_id", Fdaccount.FDACCOUNT.ID);
-        public static final UniqueKey<FdaccountRecord> KEY_FDACCOUNT_PRIMARY = createUniqueKey(Fdaccount.FDACCOUNT, "KEY_fdAccount_PRIMARY", Fdaccount.FDACCOUNT.FDACCOUNTNUMBERPK);
-        public static final UniqueKey<FdaccountotpRecord> KEY_FDACCOUNTOTP_PRIMARY = createUniqueKey(Fdaccountotp.FDACCOUNTOTP, "KEY_fdAccountOTP_PRIMARY", Fdaccountotp.FDACCOUNTOTP.REFKEY);
-        public static final UniqueKey<PatternRecord> KEY_PATTERN_PRIMARY = createUniqueKey(Pattern.PATTERN, "KEY_pattern_PRIMARY", Pattern.PATTERN.KEY);
-        public static final UniqueKey<PayeeRecord> KEY_PAYEE_PRIMARY = createUniqueKey(Payee.PAYEE, "KEY_payee_PRIMARY", Payee.PAYEE.PAYEEID);
-        public static final UniqueKey<PaymentRecord> KEY_PAYMENT_PRIMARY = createUniqueKey(Payment.PAYMENT, "KEY_payment_PRIMARY", Payment.PAYMENT.PAYMENTID);
-        public static final UniqueKey<PaymentreportRecord> KEY_PAYMENTREPORT_PRIMARY = createUniqueKey(Paymentreport.PAYMENTREPORT, "KEY_paymentReport_PRIMARY", Paymentreport.PAYMENTREPORT.PAYMENTREPORTID);
-        public static final UniqueKey<PaymentrequestRecord> KEY_PAYMENTREQUEST_PRIMARY = createUniqueKey(Paymentrequest.PAYMENTREQUEST, "KEY_paymentRequest_PRIMARY", Paymentrequest.PAYMENTREQUEST.REFKEY);
+        public static final UniqueKey<Table1Record> KEY_TABLE1_PRIMARY = createUniqueKey(Table1.TABLE1, "KEY_table1_PRIMARY", Table1.TABLE1.ID);
     }
 }
