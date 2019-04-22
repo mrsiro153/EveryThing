@@ -109,15 +109,18 @@ public class MainClass {
             if (endpoint.auth() != null) {
                 LOGGER.trace("[username = " + endpoint.auth().getUsername() + ", password = " + endpoint.auth().getPassword() + "]");
             }
-//            if (endpoint.will() != null) {
-//                LOGGER.trace("[will topic = " + endpoint.will().getWillTopic() + " msg = " + endpoint.will().getWillMessage() +
-//                        " QoS = " + endpoint.will().getWillQos() + " isRetain = " + endpoint.will().isWillRetain() + "]");
-//            }
+            if (endpoint.will() != null) {
+                LOGGER.trace("[will topic = " + endpoint.will().getWillTopic() + " msg = " + endpoint.will().getWillMessage() +
+                        " QoS = " + endpoint.will().getWillQos() + " isRetain = " + endpoint.will().isWillRetain() + "]");
+            }
             LOGGER.trace("keep alive timeout = " + endpoint.keepAliveTimeSeconds());
             // accept connection from the remote client
             endpoint.accept(true);
             endpoint.disconnectHandler(v -> {
                 LOGGER.warn("Received disconnect from client: {}", endpoint.clientIdentifier());
+            });
+            endpoint.unsubscribeHandler(v->{
+                LOGGER.warn("Received unsubscribe from client: {}", endpoint.clientIdentifier());
             });
 
             //todo client publish message
@@ -144,7 +147,8 @@ public class MainClass {
             if (isPeriodic) {
                 isPeriodic = false;
                 vertx.setPeriodic(4000, handle -> {
-                    endpoint.publish("fdsgdfgdfghmfgdfj", Buffer.buffer("AN HO LAO"), MqttQoS.AT_MOST_ONCE, false, false, rs -> {
+                    LOGGER.trace("check client is connect or not: {}",endpoint.isConnected());
+                    endpoint.publish("x.y.z", Buffer.buffer("MESSAGE FROM SERVER"), MqttQoS.AT_MOST_ONCE, false, false, rs -> {
                         LOGGER.debug("Send message success or not: {} with message: {} to: {}", rs.succeeded(), rs.result(), endpoint.clientIdentifier());
                     });
                 });
