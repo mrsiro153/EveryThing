@@ -109,7 +109,7 @@ public class MainClass {
             //model.setTitle("Ahahaha");
             model.setProperties(map);
 //            model.required(Arrays.asList("uu", "yy", "xx"));
-            model.setExample("{\"refKey\":\"ref_key\"}");
+            model.setExample("{\"orgId\":\"0215\",\"orderName\":\"mua sach\",\"orderDescription\":\"mua truyen\",\"debitAccount\":\"002222545\",\"totalDebitAmount\":2500000,\"refKey\":\"ref_key\",\"isOverLevel\":1}");
 
             Content cont = new Content()
                     .addMediaType("application/json", new MediaType().schema(model));
@@ -123,8 +123,17 @@ public class MainClass {
 
             //todo start mapping response
             ApiResponses responses = new ApiResponses();
-            responses.put("200",new ApiResponse().description("OK"));
-            responses.put("500",new ApiResponse().description("Internal server error"));
+            responses.put("200", new ApiResponse().description("OK"));
+            responses.put("500", new ApiResponse().description("Internal server error"));
+            ApiResponse ap = new ApiResponse();
+            ap.setDescription("Default body response");
+            Schema modelResponse = new Schema();
+            modelResponse.setProperties(map);
+            modelResponse.setExample("{\"orgId\":\"0215\",\"orderName\":\"mua sach\",\"orderDescription\":\"mua truyen\",\"debitAccount\":\"002222545\",\"totalDebitAmount\":2500000,\"refKey\":\"ref_key\",\"isOverLevel\":1}");
+            ap.setContent(new Content()
+                    .addMediaType("application/json",new MediaType().schema(modelResponse)));
+            responses.put("201",ap);
+
 
             matchedOperation.responses(responses);
             //todo end mapping response
@@ -133,11 +142,11 @@ public class MainClass {
     }
 
     //for implement class - create model in request body or response body
-    private void mapParams(Map<String,Object> map){
-        Map<String,Object> m = new HashMap<>();
-        m.put("type","string");
-        map.put("abc",m);
-        map.put("def",m);
+    private void mapParams(Map<String, Object> map) {
+        Map<String, Object> m = new HashMap<>();
+        m.put("type", "string");
+        map.put("abc", m);
+        map.put("def", m);
 
     }
 
