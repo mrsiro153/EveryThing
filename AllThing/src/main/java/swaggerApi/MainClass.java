@@ -69,6 +69,7 @@ public class MainClass {
         List<Operation> lst = new ArrayList<>();
         Operation operation = new Operation(); //some way to get operation
         pathItem.post(operation);//todo default demo is get
+        pathItem.put(operation);
         lst.add(operation);
         return lst;
     }
@@ -89,6 +90,7 @@ public class MainClass {
 
     //
     private void generateApi(Map<String, PathItem> hm) {
+        logger.trace("MAP<String,PathItem> length: {}",hm.size());
         hm.forEach((key, value) -> {
             PathItem p = value;
             Operation matchedOperation = null;
